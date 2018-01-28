@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.article_card_item.view.*
+
 import uk.co.polat.ergun.wikipedia.R
 import uk.co.polat.ergun.wikipedia.activities.ArticleDetailActivity
 import uk.co.polat.ergun.wikipedia.models.WikiPage

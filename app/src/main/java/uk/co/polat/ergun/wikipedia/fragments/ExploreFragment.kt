@@ -12,12 +12,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_explore.*
+
 
 import uk.co.polat.ergun.wikipedia.R
 import uk.co.polat.ergun.wikipedia.activities.SearchActivity
 import uk.co.polat.ergun.wikipedia.adapters.ArticleCardRecyclerAdapter
-import uk.co.polat.ergun.wikipedia.models.WikiResult
+
 import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
 
 
