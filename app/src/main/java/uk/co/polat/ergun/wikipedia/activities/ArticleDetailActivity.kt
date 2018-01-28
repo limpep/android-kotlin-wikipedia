@@ -45,7 +45,7 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         article_detail_webview.loadUrl(currentPage!!.fullurl)
 
-        wikiManager?.addFavorites(currentPage!!)
+        wikiManager!!.addHistory(currentPage!!)
 
     }
 
@@ -61,9 +61,9 @@ class ArticleDetailActivity : AppCompatActivity() {
             finish()
         }
         else if (item!!.itemId == R.id.action_favorite) {
-
             try {
                 if(wikiManager!!.getIsFavorite(currentPage!!.pageid!!)) {
+                    wikiManager!!.removeFavorite(currentPage!!.pageid!!)
                     toast("Article removed from favorites")
                 } else {
                     wikiManager!!.addFavorites(currentPage!!)
