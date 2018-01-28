@@ -11,10 +11,16 @@ import kotlinx.android.synthetic.main.activity_search.*
 import uk.co.polat.ergun.wikipedia.R
 
 import android.app.SearchManager;
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
+import uk.co.polat.ergun.wikipedia.adapters.ArticleListItemRecyclerAdapter
+import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
 
 
 class SearchActivity : AppCompatActivity() {
+
+    private val articleProvider: ArticleDataProvider  = ArticleDataProvider()
+    private var adapter: ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +28,9 @@ class SearchActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        search_results_recycler.layoutManager = LinearLayoutManager(this)
+        search_results_recycler.adapter = adapter
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -44,7 +53,14 @@ class SearchActivity : AppCompatActivity() {
         searchView.requestFocus()
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {
+
+                articleProvider.search(query, 0, 20 , {wikiresult->
+                    adapter.currentResults.clear()
+                    adapter.currentResults.addAll(wikiresult.query!!.pages)
+                    runOnUiThread { adapter.notifyDataSetChanged() }
+                })
+
                 println("updated Search")
                 return false
             }

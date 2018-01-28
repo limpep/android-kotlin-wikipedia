@@ -5,8 +5,8 @@ package uk.co.polat.ergun.wikipedia.models
  */
 class WikiPage {
 
-    var pageId: Int? = null
+    var pageid: Int? = null
     var title: String? = null
-    var fullUrl: String? = null
+    var fullurl: String? = null
     var thumbnail: WikiThumbnail? = null
 }
