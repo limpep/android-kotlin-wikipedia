@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">wikipedia</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_history">History</string>
+
+</resources>
