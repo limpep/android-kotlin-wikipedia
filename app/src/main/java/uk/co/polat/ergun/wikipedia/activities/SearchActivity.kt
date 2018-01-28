@@ -13,18 +13,23 @@ import uk.co.polat.ergun.wikipedia.R
 import android.app.SearchManager;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
+import uk.co.polat.ergun.wikipedia.WikiApplication
 import uk.co.polat.ergun.wikipedia.adapters.ArticleListItemRecyclerAdapter
+import uk.co.polat.ergun.wikipedia.managers.WikiManager
 import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
 
 
 class SearchActivity : AppCompatActivity() {
 
-    private val articleProvider: ArticleDataProvider  = ArticleDataProvider()
+    private var wikiManager: WikiManager? = null
+
     private var adapter: ArticleListItemRecyclerAdapter = ArticleListItemRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        wikiManager = (applicationContext as WikiApplication).wikiManager
 
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -55,7 +60,7 @@ class SearchActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
 
-                articleProvider.search(query, 0, 20 , {wikiresult->
+                wikiManager?.search(query, 0, 20 , { wikiresult->
                     adapter.currentResults.clear()
                     adapter.currentResults.addAll(wikiresult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }

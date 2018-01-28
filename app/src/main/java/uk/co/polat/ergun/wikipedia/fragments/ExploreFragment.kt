@@ -1,6 +1,7 @@
 package uk.co.polat.ergun.wikipedia.fragments
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -15,8 +16,10 @@ import android.view.ViewGroup
 
 
 import uk.co.polat.ergun.wikipedia.R
+import uk.co.polat.ergun.wikipedia.WikiApplication
 import uk.co.polat.ergun.wikipedia.activities.SearchActivity
 import uk.co.polat.ergun.wikipedia.adapters.ArticleCardRecyclerAdapter
+import uk.co.polat.ergun.wikipedia.managers.WikiManager
 
 import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
 
@@ -26,8 +29,7 @@ import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
  */
 class ExploreFragment : Fragment() {
 
-    private val articleProvider: ArticleDataProvider = ArticleDataProvider()
-
+    private var wikiManager: WikiManager? = null
 
     var searchCardView: CardView? = null
     var exploreRecycler: RecyclerView? = null
@@ -35,6 +37,13 @@ class ExploreFragment : Fragment() {
     var refresher: SwipeRefreshLayout? = null
 
     var adapter: ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
+
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        wikiManager = (activity.applicationContext as WikiApplication).wikiManager
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -69,7 +78,7 @@ class ExploreFragment : Fragment() {
 
         try {
 
-            articleProvider.getRandom(15, { wikiResult ->
+            wikiManager?.getRandom(15, { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
                 activity.runOnUiThread {

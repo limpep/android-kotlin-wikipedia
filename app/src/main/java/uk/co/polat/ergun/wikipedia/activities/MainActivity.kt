@@ -1,10 +1,11 @@
-package uk.co.polat.ergun.wikipedia
+package uk.co.polat.ergun.wikipedia.activities
 
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import uk.co.polat.ergun.wikipedia.R
 
 import uk.co.polat.ergun.wikipedia.fragments.ExploreFragment
 import uk.co.polat.ergun.wikipedia.fragments.FavoritesFragment
