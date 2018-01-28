@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.rowParser
+import org.jetbrains.anko.db.select
 import uk.co.polat.ergun.wikipedia.models.WikiPage
 import uk.co.polat.ergun.wikipedia.models.WikiThumbnail
 
@@ -39,6 +40,10 @@ class HistoryRepository(val databaseOpenHelper: ArticleDatabaseOpenHelper) {
             page.fullurl = url
             page.thumbnail = Gson().fromJson(thumbnailJson, WikiThumbnail::class.java)
             pages.add(page)
+        }
+
+        databaseOpenHelper.use {
+            select(TABLE_NAME).parseList(articleRowParser)
         }
 
         return pages
