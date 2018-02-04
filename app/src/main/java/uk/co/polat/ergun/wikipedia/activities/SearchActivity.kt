@@ -31,7 +31,6 @@ class SearchActivity : AppCompatActivity() {
 
         wikiManager = (applicationContext as WikiApplication).wikiManager
 
-        setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         search_results_recycler.layoutManager = LinearLayoutManager(this)

@@ -8,26 +8,12 @@
     android:layout_height="match_parent"
     tools:context="uk.co.polat.ergun.wikipedia.activities.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:theme="@style/AppTooBar"
-            />
-    </android.support.design.widget.AppBarLayout>
-
-    <FrameLayout
+     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="?attr/actionBarSize"
-        app:layout_constraintBottom_toTopOf="@+id/navigation"
-        app:layout_constraintTop_toBottomOf="@+id/appbar"></FrameLayout>
+
+        app:layout_constraintBottom_toTopOf="@+id/navigation"/>
 
 
     <android.support.design.widget.BottomNavigationView

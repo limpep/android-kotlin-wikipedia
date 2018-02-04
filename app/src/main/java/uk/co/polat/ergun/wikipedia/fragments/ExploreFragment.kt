@@ -45,7 +45,6 @@ class ExploreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_explore, container, false)
 
         searchCardView = view.findViewById<CardView>(R.id.search_card_view)
@@ -58,7 +57,6 @@ class ExploreFragment : Fragment() {
         }
 
         exploreRecycler!!.layoutManager = GridLayoutManager(activity,1)
-//        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL )
         exploreRecycler!!.adapter = adapter
 
         refresher?.setOnRefreshListener {

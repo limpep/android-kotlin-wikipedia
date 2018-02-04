@@ -28,7 +28,7 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         wikiManager = (applicationContext as WikiApplication).wikiManager
 
-        setSupportActionBar(toolBar)
+
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         val wikiPageJson = intent.getStringExtra("page")

@@ -42,7 +42,7 @@ class HistoryFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater!!.inflate(R.layout.fragment_history, container, false)
 
         historyRecycler = view.findViewById<RecyclerView>(R.id.history_article_recycler)
@@ -85,7 +85,7 @@ class HistoryFragment : Fragment() {
                         .setPositiveBtnText("Yes")
                         .setNegativeBtnBackground(Color.parseColor("#FFA9A7A8"))
                         .setAnimation(Animation.POP)
-                        .setBackgroundColor(Color.parseColor("#303F9F"))  //Pass your Gif here
+                        .setBackgroundColor(Color.parseColor("#303F9F"))
                         .isCancellable(true)
                         .setIcon(R.drawable.ic_info_outline_black_24dp, Icon.Visible)
                         .OnPositiveClicked {
@@ -102,11 +102,11 @@ class HistoryFragment : Fragment() {
                         .OnNegativeClicked {  }
                         .build()
             } else {
-//                Toast.makeText(activity,"Nothing to clear", Toast.LENGTH_LONG).show()
+
                 FancyToast.makeText(activity,"Nothing to clear",FancyToast.LENGTH_LONG, FancyToast.INFO,false).show()
             }
         }
         return true
     }
 
-}// Required empty public constructor
+}
