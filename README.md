@@ -7,6 +7,7 @@ Written in Kotlin
 - Fuel https://github.com/kittinunf/Fuel
 - Anko https://github.com/Kotlin/anko
 - FancyAlertDialog https://github.com/Shashank02051997/FancyGifDialog-Android
+- FancyToast https://github.com/Shashank02051997/FancyToast-Android
 
 
 ## License

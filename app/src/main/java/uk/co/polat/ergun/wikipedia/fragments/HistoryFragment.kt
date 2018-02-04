@@ -2,14 +2,18 @@ package uk.co.polat.ergun.wikipedia.fragments
 
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.Toast
 
-import com.shashank.sony.fancygifdialoglib.FancyGifDialog
+import com.shashank.sony.fancydialoglib.Animation
+import com.shashank.sony.fancydialoglib.FancyAlertDialog
+import com.shashank.sony.fancydialoglib.Icon
+
+import com.shashank.sony.fancytoastlib.FancyToast
 import org.jetbrains.anko.*
 
 
@@ -73,15 +77,17 @@ class HistoryFragment : Fragment() {
         if (item!!.itemId == R.id.action_clear_history) {
 
             if (wikiManager?.getHistory()!!.size > 0 ) {
-                FancyGifDialog.Builder(activity)
+                FancyAlertDialog.Builder(activity)
                         .setTitle("Clear History")
                         .setMessage("Are you sure you want to clear your history?")
                         .setNegativeBtnText("Cancel")
-                        .setPositiveBtnBackground("#27d198")
+                        .setPositiveBtnBackground(Color.parseColor("#27d198"))
                         .setPositiveBtnText("Yes")
-                        .setNegativeBtnBackground("#FFA9A7A8")
-                        .setGifResource(R.drawable.gif16)   //Pass your Gif here
+                        .setNegativeBtnBackground(Color.parseColor("#FFA9A7A8"))
+                        .setAnimation(Animation.POP)
+                        .setBackgroundColor(Color.parseColor("#303F9F"))  //Pass your Gif here
                         .isCancellable(true)
+                        .setIcon(R.drawable.ic_info_outline_black_24dp, Icon.Visible)
                         .OnPositiveClicked {
                             adapter.currentResults.clear()
                             doAsync {
@@ -96,7 +102,8 @@ class HistoryFragment : Fragment() {
                         .OnNegativeClicked {  }
                         .build()
             } else {
-                Toast.makeText(activity,"Nothing to clear", Toast.LENGTH_LONG).show()
+//                Toast.makeText(activity,"Nothing to clear", Toast.LENGTH_LONG).show()
+                FancyToast.makeText(activity,"Nothing to clear",FancyToast.LENGTH_LONG, FancyToast.INFO,false).show()
             }
         }
         return true

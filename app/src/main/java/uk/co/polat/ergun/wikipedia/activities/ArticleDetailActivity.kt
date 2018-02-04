@@ -8,6 +8,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.google.gson.Gson
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_article_detail.*
 import org.jetbrains.anko.toast
 import uk.co.polat.ergun.wikipedia.R
@@ -64,13 +65,13 @@ class ArticleDetailActivity : AppCompatActivity() {
             try {
                 if(wikiManager!!.getIsFavorite(currentPage!!.pageid!!)) {
                     wikiManager!!.removeFavorite(currentPage!!.pageid!!)
-                    toast("Article removed from favorites")
+                    FancyToast.makeText(this,"Article removed from favorites", FancyToast.LENGTH_LONG, FancyToast.INFO,false).show()
                 } else {
                     wikiManager!!.addFavorites(currentPage!!)
-                    toast("Article added to favorite")
+                    FancyToast.makeText(this,"Article added to favorite", FancyToast.LENGTH_LONG, FancyToast.SUCCESS,false).show()
                 }
             } catch (ex: Exception) {
-                toast("Unable to update this article.")
+                FancyToast.makeText(this,"Unable to update this article.", FancyToast.LENGTH_LONG, FancyToast.ERROR,false).show()
             }
         }
 
