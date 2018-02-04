@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
-import android.support.v7.widget.CardView
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +46,7 @@ class ExploreFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var view = inflater!!.inflate(R.layout.fragment_explore, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_explore, container, false)
 
         searchCardView = view.findViewById<CardView>(R.id.search_card_view)
         exploreRecycler = view.findViewById<RecyclerView>(R.id.explore_article_recycler)
@@ -60,7 +57,8 @@ class ExploreFragment : Fragment() {
             context.startActivity(searchIntent)
         }
 
-        exploreRecycler!!.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL )
+        exploreRecycler!!.layoutManager = GridLayoutManager(activity,1)
+//        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL )
         exploreRecycler!!.adapter = adapter
 
         refresher?.setOnRefreshListener {

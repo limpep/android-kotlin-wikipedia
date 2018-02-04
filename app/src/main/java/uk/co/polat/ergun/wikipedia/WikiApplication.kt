@@ -7,9 +7,6 @@ import uk.co.polat.ergun.wikipedia.repositories.ArticleDatabaseOpenHelper
 import uk.co.polat.ergun.wikipedia.repositories.FavoritesRepository
 import uk.co.polat.ergun.wikipedia.repositories.HistoryRepository
 
-/**
- * Created by Ergun Polat on 28/01/2018.
- */
 
 class WikiApplication: Application() {
     private var dbHelper: ArticleDatabaseOpenHelper? = null
@@ -18,7 +15,6 @@ class WikiApplication: Application() {
     private var wikiProvider: ArticleDataProvider? = null
     var wikiManager: WikiManager? = null
         private set
-
 
 
     override fun onCreate() {

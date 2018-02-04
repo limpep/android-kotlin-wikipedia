@@ -3,5 +3,7 @@
     <string name="title_explore">Explore</string>
     <string name="title_favorites">Favorites</string>
     <string name="title_history">History</string>
+    <string name="example_hello_world">Hello World</string>
+    <string name="wikipedia_image_description">Wikipedia Image</string>
 
 </resources>

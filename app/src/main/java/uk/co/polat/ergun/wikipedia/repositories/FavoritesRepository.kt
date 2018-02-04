@@ -8,10 +8,7 @@ import org.jetbrains.anko.db.select
 import uk.co.polat.ergun.wikipedia.models.WikiPage
 import uk.co.polat.ergun.wikipedia.models.WikiThumbnail
 
-/**
- * Created by Ergun Polat on 28/01/2018.
- */
-class FavoritesRepository(val databaseOpenHelper: ArticleDatabaseOpenHelper) {
+class FavoritesRepository(private val databaseOpenHelper: ArticleDatabaseOpenHelper) {
     private val TABLE_NAME: String = "Favorites"
 
     fun addFavorite(page: WikiPage) {
@@ -30,14 +27,14 @@ class FavoritesRepository(val databaseOpenHelper: ArticleDatabaseOpenHelper) {
     }
 
     fun isArticleFavorite(pageId: Int): Boolean {
-        var pages = getAllFavorites()
+        val pages = getAllFavorites()
         return pages.any { page ->
             page.pageid == pageId
         }
     }
 
     fun getAllFavorites() : ArrayList<WikiPage> {
-        var pages = ArrayList<WikiPage>()
+        val pages = ArrayList<WikiPage>()
 
         val articleRowParser = rowParser { id: Int, title: String, url: String, thumbnailJson: String ->
             val page = WikiPage()

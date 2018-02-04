@@ -21,12 +21,12 @@ class ArticleListItemRecyclerAdapter() : RecyclerView.Adapter<ListItemViewHolder
     }
 
     override fun onBindViewHolder(holder: ListItemViewHolder?, position: Int) {
-        var page = currentResults[position]
+        val page = currentResults[position]
         holder?.updateWithPage(page)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ListItemViewHolder {
-        var listItem = LayoutInflater.from(parent?.context).inflate(R.layout.article_list_item, parent, false)
+        val listItem = LayoutInflater.from(parent?.context).inflate(R.layout.article_list_item, parent, false)
         return ListItemViewHolder(listItem)
     }
 

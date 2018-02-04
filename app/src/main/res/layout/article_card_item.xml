@@ -7,30 +7,31 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="6dp"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:background="@android:color/white"
-        app:cardElevation="4dp">
-        <LinearLayout
-            android:orientation="vertical"
+        app:cardElevation="2dp">
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:padding="16dp">
             <ImageView
                 android:id="@+id/article_image"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_image_black_24dp"/>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_image_black_24dp"
+                android:contentDescription="@string/wikipedia_image_description"/>
             <TextView
                 android:id="@+id/article_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:text="Hello World"/>
-        </LinearLayout>
+                android:layout_toRightOf="@+id/article_image"
+                android:text="@string/example_hello_world"/>
+        </RelativeLayout>
         
     </android.support.v7.widget.CardView>
 

@@ -21,12 +21,12 @@ class ArticleCardRecyclerAdapter() : RecyclerView.Adapter<CardViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CardViewHolder?, position: Int) {
-        var page = currentResults[position]
+        val page = currentResults[position]
         holder?.updateWithPage(page)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CardViewHolder {
-        var cardItem = LayoutInflater.from(parent?.context).inflate(R.layout.article_card_item, parent, false)
+        val cardItem = LayoutInflater.from(parent?.context).inflate(R.layout.article_card_item, parent, false)
         return CardViewHolder(cardItem)
     }
 

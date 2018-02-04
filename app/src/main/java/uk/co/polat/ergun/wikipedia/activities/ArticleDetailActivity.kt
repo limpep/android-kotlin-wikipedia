@@ -60,7 +60,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         if(item!!.itemId == android.R.id.home) {
             finish()
         }
-        else if (item!!.itemId == R.id.action_favorite) {
+        else if (item.itemId == R.id.action_favorite) {
             try {
                 if(wikiManager!!.getIsFavorite(currentPage!!.pageid!!)) {
                     wikiManager!!.removeFavorite(currentPage!!.pageid!!)
