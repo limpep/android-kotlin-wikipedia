@@ -20,12 +20,12 @@ Written in Kotlin
 - FancyToast https://github.com/Shashank02051997/FancyToast-Android
 
 ### Screenshots
-<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/1.png" width="350" height="750">
-<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/2.png" width="350" height="750">
-<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/3.png" width="350" height="750">
-<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/4.png" width="350" height="750">
-<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/5.png" width="350" height="750">
-<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/6.png" width="350" height="750">
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/1.png" width="350" height="850">
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/2.png" width="350" height="850">
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/3.png" width="350" height="850">
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/4.png" width="350" height="850">
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/5.png" width="350" height="850">
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/6.png" width="350" height="850">
 
 
 ## License
