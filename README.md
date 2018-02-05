@@ -19,6 +19,9 @@ Written in Kotlin
 - FancyAlertDialog https://github.com/Shashank02051997/FancyGifDialog-Android
 - FancyToast https://github.com/Shashank02051997/FancyToast-Android
 
+### Screenshots
+<img src="https://github.com/limpep/android-kotlin-wikipedia/blob/master/screenshots/1.png" width="250" height="250">
+
 
 ## License
 ```
