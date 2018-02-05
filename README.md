@@ -1,5 +1,15 @@
 ### Android Wikipedia app
 
+This is allows your to search wikipedia for different articles. 
+
+it was created following the Building Android Apps with Kotlin: Getting Started by Alex Dunn On Pluralsight site.
+
+https://www.pluralsight.com/courses/building-android-apps-kotlin-getting-started
+
+
+#### API
+https://www.mediawiki.org/wiki/API:Main_page
+
 #### Tech
 
 Written in Kotlin
