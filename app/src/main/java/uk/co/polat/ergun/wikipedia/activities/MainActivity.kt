@@ -13,7 +13,6 @@ import uk.co.polat.ergun.wikipedia.fragments.HistoryFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG = "MainActivity"
     private val exploreFragment: ExploreFragment
     private val favoritesFragment: FavoritesFragment
     private val historyFragment:HistoryFragment

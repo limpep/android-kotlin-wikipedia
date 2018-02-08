@@ -19,9 +19,6 @@ import uk.co.polat.ergun.wikipedia.activities.SearchActivity
 import uk.co.polat.ergun.wikipedia.adapters.ArticleCardRecyclerAdapter
 import uk.co.polat.ergun.wikipedia.managers.WikiManager
 
-import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
-
-
 /**
  * A simple [Fragment] subclass.
  */

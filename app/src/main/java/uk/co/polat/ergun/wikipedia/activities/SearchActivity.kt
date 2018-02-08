@@ -13,6 +13,9 @@ import uk.co.polat.ergun.wikipedia.R
 import android.app.SearchManager;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
+import android.util.Log
+import com.pawegio.kandroid.onQueryChange
+import com.pawegio.kandroid.onQuerySubmit
 import uk.co.polat.ergun.wikipedia.WikiApplication
 import uk.co.polat.ergun.wikipedia.adapters.ArticleListItemRecyclerAdapter
 import uk.co.polat.ergun.wikipedia.managers.WikiManager
@@ -57,23 +60,23 @@ class SearchActivity : AppCompatActivity() {
         searchView.setIconifiedByDefault(false)
         searchView.requestFocus()
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String): Boolean {
+        searchView.onQuerySubmit { query ->
+            wikiManager?.search(query, 0, 20 , { wikiresult->
+                adapter.currentResults.clear()
+                adapter.currentResults.addAll(wikiresult.query!!.pages)
+                runOnUiThread { adapter.notifyDataSetChanged() }
+            })
+        }
 
-                wikiManager?.search(query, 0, 20 , { wikiresult->
-                    adapter.currentResults.clear()
-                    adapter.currentResults.addAll(wikiresult.query!!.pages)
-                    runOnUiThread { adapter.notifyDataSetChanged() }
-                })
-
-                println("updated Search")
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
+        searchView.onQueryChange { query ->
+           if (query.length >= 3) {
+               wikiManager?.search(query, 0, 20 , { wikiresult->
+                   adapter.currentResults.clear()
+                   adapter.currentResults.addAll(wikiresult.query!!.pages)
+                   runOnUiThread { adapter.notifyDataSetChanged() }
+               })
+           }
+        }
 
         return super.onCreateOptionsMenu(menu)
     }

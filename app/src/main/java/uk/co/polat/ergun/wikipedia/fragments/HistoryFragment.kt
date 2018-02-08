@@ -102,11 +102,10 @@ class HistoryFragment : Fragment() {
                         .OnNegativeClicked {  }
                         .build()
             } else {
-//                Toast.makeText(activity,"Nothing to clear", Toast.LENGTH_LONG).show()
                 FancyToast.makeText(activity,"Nothing to clear",FancyToast.LENGTH_LONG, FancyToast.INFO,false).show()
             }
         }
         return true
     }
 
-}// Required empty public constructor
+}

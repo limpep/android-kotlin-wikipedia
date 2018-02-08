@@ -1,9 +1,13 @@
 package uk.co.polat.ergun.wikipedia.providers
 
+import android.util.Log
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.ResponseDeserializable
 import com.github.kittinunf.fuel.httpGet
+import com.github.kittinunf.fuel.rx.rx_object
 import com.google.gson.Gson
+import com.pawegio.kandroid.e
+import io.reactivex.schedulers.Schedulers
 import uk.co.polat.ergun.wikipedia.models.Urls
 import uk.co.polat.ergun.wikipedia.models.WikiResult
 import java.io.Reader
@@ -19,30 +23,48 @@ class ArticleDataProvider {
 
     fun search(term: String, skip: Int, take: Int, responseHandler: (result: WikiResult) -> Unit?) {
         Urls.getSearchUrl(term, skip, take).httpGet()
-                .responseObject(WikipediaDataDeserializer()) { _, response, result ->
-
-                    if (response.statusCode != 200) {
-                        throw Exception("Unable to get article")
+                .rx_object(WikipediaDataDeserializer())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
+                .subscribe({ result ->
+                    val statusCode = result.component2()?.response?.statusCode
+                    when(statusCode) {
+                        -1 -> e(statusCode.toString())
+                        else -> {
+                            val (data, _) = result
+                            responseHandler.invoke(data as WikiResult)
+                        }
                     }
-                    val(data , _) = result
-                    responseHandler.invoke(data as WikiResult)
-                }
+
+                }, {
+                    error -> e(error.cause.toString())
+                })
     }
 
 
     fun getRandom(take: Int, responseHandler: (result: WikiResult) -> Unit?) {
-        Urls.getRandomURl(take).httpGet().responseObject(WikipediaDataDeserializer()) { _, response, result ->
+        Urls.getRandomURl(take).httpGet()
+                .rx_object(WikipediaDataDeserializer())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
+                .subscribe({ result ->
 
-            if (response.statusCode != 200) {
-                throw Exception("Unable to get articles")
-            }
+                    val statusCode = result.component2()?.response?.statusCode
 
-            val(data, _) = result
-            responseHandler.invoke(data as WikiResult)
-        }
+                    when(statusCode) {
+                        -1 -> e(statusCode.toString())
+                        else -> {
+                            val (data, _) = result
+                            responseHandler.invoke(data as WikiResult)
+                        }
+                    }
+
+                }, {
+                    error -> e(error.cause.toString())
+                })
     }
 
-    class WikipediaDataDeserializer: ResponseDeserializable<WikiResult> {
+    class WikipediaDataDeserializer : ResponseDeserializable<WikiResult> {
         override fun deserialize(reader: Reader) = Gson().fromJson(reader, WikiResult::class.java)
     }
 }
