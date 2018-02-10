@@ -10,7 +10,7 @@ import android.webkit.WebViewClient
 import com.google.gson.Gson
 import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.activity_article_detail.*
-import org.jetbrains.anko.toast
+
 import uk.co.polat.ergun.wikipedia.R
 import uk.co.polat.ergun.wikipedia.WikiApplication
 import uk.co.polat.ergun.wikipedia.managers.WikiManager

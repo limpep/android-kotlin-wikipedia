@@ -11,17 +11,15 @@ import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import com.pawegio.kandroid.e
 
 import uk.co.polat.ergun.wikipedia.R
 import uk.co.polat.ergun.wikipedia.WikiApplication
 import uk.co.polat.ergun.wikipedia.activities.SearchActivity
 import uk.co.polat.ergun.wikipedia.adapters.ArticleCardRecyclerAdapter
 import uk.co.polat.ergun.wikipedia.managers.WikiManager
+import uk.co.polat.ergun.wikipedia.models.WikiResult
 
-/**
- * A simple [Fragment] subclass.
- */
 class ExploreFragment : Fragment() {
 
     private var wikiManager: WikiManager? = null
@@ -42,7 +40,7 @@ class ExploreFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater!!.inflate(R.layout.fragment_explore, container, false)
 
         searchCardView = view.findViewById<CardView>(R.id.search_card_view)
@@ -70,24 +68,32 @@ class ExploreFragment : Fragment() {
     }
 
     private fun getRandomArticles() {
-        refresher?.isRefreshing = true
 
-        try {
+        wikiManager?.getRandom(15)
+                ?.doOnSuccess { refresher?.isRefreshing = false }
+                ?.subscribe({ res -> handleResponse(res)
+                }, { e -> handleError(e) })
 
-            wikiManager?.getRandom(15, { wikiResult ->
-                adapter.currentResults.clear()
-                adapter.currentResults.addAll(wikiResult.query!!.pages)
-                activity.runOnUiThread {
-                    adapter.notifyDataSetChanged()
-                    refresher?.isRefreshing = false
-                }
-            })
-        } catch (ex: Exception) {
-            val builder = AlertDialog.Builder(activity)
-            builder.setMessage(ex.message).setTitle("oops!")
-            val dialog = builder.create()
-            dialog.show()
-        }
     }
 
-}// Required empty public constructor
+   private fun handleResponse(result: WikiResult?){
+       adapter.currentResults.clear()
+       adapter.currentResults.addAll(result?.query?.pages!!)
+       adapter.notifyDataSetChanged()
+    }
+
+
+    private fun handleError(error: Throwable) {
+        e("error: " + error)
+        reportException(error)
+    }
+
+    private fun reportException(e: Throwable) {
+        refresher?.isRefreshing = false
+        val builder = AlertDialog.Builder(activity)
+        builder.setMessage(e.message).setTitle("Error")
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+}

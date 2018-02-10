@@ -5,6 +5,7 @@ package uk.co.polat.ergun.wikipedia.models
  */
 object Urls {
     val BaseUrl = "https://en.wikipedia.org/w/api.php"
+//    val BaseUrl = "http://localhost"
 
     fun getSearchUrl(term: String, skip: Int, take: Int): String {
         return BaseUrl + "?action=query" +
