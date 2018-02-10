@@ -8,9 +8,12 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.*
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.support.v4.onUiThread
 
 
 import uk.co.polat.ergun.wikipedia.R
@@ -72,22 +75,26 @@ class ExploreFragment : Fragment() {
     private fun getRandomArticles() {
         refresher?.isRefreshing = true
 
-        try {
 
-            wikiManager?.getRandom(15, { wikiResult ->
-                adapter.currentResults.clear()
-                adapter.currentResults.addAll(wikiResult.query!!.pages)
-                activity.runOnUiThread {
-                    adapter.notifyDataSetChanged()
-                    refresher?.isRefreshing = false
-                }
-            })
-        } catch (ex: Exception) {
-            val builder = AlertDialog.Builder(activity)
-            builder.setMessage(ex.message).setTitle("oops!")
-            val dialog = builder.create()
-            dialog.show()
-        }
+            doAsync(exceptionHandler = { e -> reportException(e) }) {
+                wikiManager?.getRandom(15, { wikiResult ->
+                    adapter.currentResults.clear()
+                    adapter.currentResults.addAll(wikiResult.query!!.pages)
+                    onUiThread {
+                        adapter.notifyDataSetChanged()
+                        refresher?.isRefreshing = false
+                    }
+                })
+            }
+
+    }
+
+    private fun reportException(e: Throwable) {
+        refresher?.isRefreshing = false
+        val builder = AlertDialog.Builder(activity)
+        builder.setMessage(e.message).setTitle("Error")
+        val dialog = builder.create()
+        dialog.show()
     }
 
 }// Required empty public constructor
