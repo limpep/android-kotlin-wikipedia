@@ -4,8 +4,8 @@ package uk.co.polat.ergun.wikipedia.models
  * Created by Ergun Polat on 28/01/2018.
  */
 object Urls {
-//    val BaseUrl = "https://en.wikipedia.org/w/api.php"
-    val BaseUrl = "http://localhost"
+    val BaseUrl = "https://en.wikipedia.org/w/api.php"
+//    val BaseUrl = "http://localhost"
 
     fun getSearchUrl(term: String, skip: Int, take: Int): String {
         return BaseUrl + "?action=query" +

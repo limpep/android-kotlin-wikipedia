@@ -1,5 +1,6 @@
 package uk.co.polat.ergun.wikipedia.managers
 
+import io.reactivex.Single
 import uk.co.polat.ergun.wikipedia.models.WikiPage
 import uk.co.polat.ergun.wikipedia.models.WikiResult
 import uk.co.polat.ergun.wikipedia.providers.ArticleDataProvider
@@ -16,12 +17,12 @@ class WikiManager(private val provider: ArticleDataProvider,
     private var favoriteCache: ArrayList<WikiPage>? = null
     private var historyCache: ArrayList<WikiPage>? = null
 
-    fun search (term: String, skip: Int, take: Int, handler: (result: WikiResult) -> Unit?) {
-        return provider.search(term, skip, take, handler)
+    fun search (term: String, skip: Int, take: Int) : Single<WikiResult?>? {
+        return provider.search(term, skip, take)
     }
 
-    fun getRandom(take: Int, handler: (result: WikiResult) -> Unit?) {
-        return provider.getRandom(take, handler)
+    fun getRandom(take: Int): Single<WikiResult?>? {
+        return provider.getRandom(take)
     }
 
     fun getHistory(): ArrayList<WikiPage>? {
